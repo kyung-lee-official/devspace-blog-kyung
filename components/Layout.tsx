@@ -19,7 +19,7 @@ const Layout = ({
 				<meta name="description" content={description} />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main>{children}</main>
+			<main className="container mx-auto my-7">{children}</main>
 		</div>
 	);
 };
