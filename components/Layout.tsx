@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Header from "./Header";
 
 const Layout = ({
 	title,
@@ -19,6 +20,7 @@ const Layout = ({
 				<meta name="description" content={description} />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
+			<Header />
 			<main className="container mx-auto my-7">{children}</main>
 		</div>
 	);
@@ -27,7 +29,7 @@ const Layout = ({
 Layout.defaultProps = {
 	title: "Welcome to DevSpace",
 	keywords: "development, coding, programming",
-	description: "The best info and news in developments."
-}
+	description: "The best info and news in developments.",
+};
 
 export default Layout;
