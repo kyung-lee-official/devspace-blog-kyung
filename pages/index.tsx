@@ -4,7 +4,7 @@ import type { NextPage } from "next";
 import Layout from "../components/Layout";
 import matter from "gray-matter";
 
-const HomePage: NextPage = () => {
+const HomePage: NextPage<any> = ({ posts }: { posts: any }) => {
 	return (
 		<Layout>
 			<h1>Hello World</h1>
@@ -26,11 +26,13 @@ export async function getStaticProps() {
 
 		return {
 			slug,
-			frontmatter
+			frontmatter,
 		};
 	});
 
 	return {
-		props: {},
+		props: {
+			posts,
+		},
 	};
 }
