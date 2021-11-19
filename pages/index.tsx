@@ -5,6 +5,7 @@ import type { NextPage } from "next";
 import Layout from "../components/Layout";
 import matter from "gray-matter";
 import Post from "../components/Post";
+import sortByDate from "../utils";
 
 const HomePage: NextPage<any> = ({ posts }: { posts: any }) => {
 	return (
@@ -44,7 +45,7 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			posts,
+			posts: posts.sort(sortByDate).slice(0, 6),
 		},
 	};
 }
