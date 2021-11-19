@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CategoryLable from "./CategoryLable";
 
 const Post = ({ post }: { post: any }) => {
 	return (
@@ -15,7 +16,7 @@ const Post = ({ post }: { post: any }) => {
 				<span className="font-light text-gray-600">
 					{post.frontmatter.date}
 				</span>
-				<div>{post.frontmatter.category}</div>
+				<CategoryLable>{post.frontmatter.category}</CategoryLable>
 			</div>
 			<div className="mt-2">
 				<Link href={`/blog/${post.slug}`}>
