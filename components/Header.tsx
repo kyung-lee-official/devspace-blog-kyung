@@ -1,35 +1,82 @@
 import Link from "next/link";
 import Image from "next/image";
+import styles from "../styles/Header.module.css";
+import { Row, Col, Grid } from "antd";
 
+const { useBreakpoint } = Grid;
 const Header = () => {
+	const screens = useBreakpoint();
+
 	return (
-		<header className="bg-gray-900 text-gray-100 shadow w-full">
-			<div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-				<Link href="/">
-					<a className="flex md:w-1/5 title-font font-medium items-center md:justify-start mb-4 md:mb-0">
-						<Image
-							src="/images/logo.png"
-							width={40}
-							height={40}
-							alt="logo"
-						/>
-						<span className="ml-3 tex-xl">DevSpace</span>
-					</a>
-				</Link>
-				<nav className="flex flex-wrap md:w-4/5 items-center justify-end text-base md:ml-auto">
-					<Link href="/blog">
-						<a className="mx-5 cursor-pointer uppercase hover:text-indigo-300">
-							Blog
-						</a>
-					</Link>
-					<Link href="/about">
-						<a className="mx-5 cursor-pointer uppercase hover:text-indigo-300">
-							About
-						</a>
-					</Link>
-				</nav>
-			</div>
-		</header>
+		<div className={styles["header"]}>
+			{screens.md ? (
+				<Row justify="space-between" align="middle" className={styles["header-row"]}>
+					<Col offset={1} flex="auto">
+						<Link href="/">
+							<a className={styles["logo-image-link"]}>
+								<Image
+									src="/images/logo.png"
+									width={40}
+									height={40}
+									alt="logo"
+								/>
+								<span className={styles["logo-text"]}>
+									DevSpace
+								</span>
+							</a>
+						</Link>
+					</Col>
+					<Col flex={2}></Col>
+					<Col className={styles["nav"]}>
+						<Link href="/blog">
+							<a className={styles["nav-items"]}>Blog</a>
+						</Link>
+						<Link href="/about">
+							<a className={styles["nav-items"]}>About</a>
+						</Link>
+					</Col>
+					<Col span={1}></Col>
+				</Row>
+			) : (
+				<>
+					<Row justify="center" align="middle" className={styles["header-row"]}>
+						<Col className={styles["logo-container"]}>
+							<Link href="/">
+								<a className={styles["logo-image-link"]}>
+									<Image
+										src="/images/logo.png"
+										width={40}
+										height={40}
+										alt="logo"
+									/>
+									<span className={styles["logo-text"]}>
+										DevSpace
+									</span>
+								</a>
+							</Link>
+						</Col>
+					</Row>
+					<Row justify="center">
+						<Col className={styles["nav"]}>
+							<Link href="/blog">
+								<a className={styles["nav-items"]}>Blog</a>
+							</Link>
+						</Col>
+						<div></div>
+						<Col span={1}></Col>
+					</Row>
+					<Row justify="center">
+						<Col className={styles["nav"]}>
+							<Link href="/about">
+								<a className={styles["nav-items"]}>About</a>
+							</Link>
+						</Col>
+						<div></div>
+						<Col span={1}></Col>
+					</Row>
+				</>
+			)}
+		</div>
 	);
 };
 

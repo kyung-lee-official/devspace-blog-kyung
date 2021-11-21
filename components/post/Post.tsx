@@ -1,16 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import CategoryLable from "./CategoryLable";
+import CategoryLable from "../CategoryLable";
+import styles from "./Post.module.css"
 
 const Post = ({ post }: { post: any }) => {
 	return (
-		<div className="w-full px-10 py-6 bg-white rounded-lg shadow-md mt-6">
+		<div className={styles["post-card"]}>
 			<Image
 				src={post.frontmatter.cover_image}
 				alt=""
 				height={420}
 				width={600}
-				className="mb-4 rounded"
+				className={styles.image}
 			/>
 			<div className="flex justify-between items-center">
 				<span className="font-light text-gray-600">

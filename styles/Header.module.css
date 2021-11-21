@@ -1,0 +1,41 @@
+.header {
+	background-color: hsl(244, 0%, 16%);
+	color: hsl(0, 0%, 90%);
+	box-shadow: hsl(0, 0%, 90%);
+	height: max-content;
+}
+.header-row {
+	height: 4.5em;
+}
+
+.logo-image-link {
+	display: flex;
+	font-size: medium;
+	align-items: center;
+}
+.logo-text {
+	margin-left: 1em;
+	font-weight: bold;
+	color: hsl(0, 0%, 90%);
+}
+.logo-text:hover {
+	color: hsl(0, 0%, 100%);
+}
+
+.nav {
+	text-transform: uppercase;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-items: center;
+}
+
+.nav-items {
+	margin: 0px 5px;
+	color: hsl(0, 0%, 90%);
+}
+
+.nav-items:hover {
+	margin: 0px 5px;
+	color: hsl(0, 0%, 100%);
+}

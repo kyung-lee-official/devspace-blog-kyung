@@ -4,18 +4,26 @@ import Link from "next/link";
 import type { NextPage } from "next";
 import Layout from "../../components/Layout";
 import matter from "gray-matter";
-import Post from "../../components/Post";
+import Post from "../../components/post/Post";
 import sortByDate from "../../utils";
+import { Col, Row } from "antd";
 
 const BlogPage: NextPage<any> = ({ posts }: { posts: any }) => {
 	return (
 		<Layout>
 			<h1 className="text-5xl border-b-4 p-5 font-bold">Blog</h1>
-			<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+			<Row gutter={[16, 16]}>
 				{posts.map((post: any, index: number) => (
-					<Post key={index} post={post}></Post>
+					<Col
+						sm={{ span: 24 }}
+						md={{ span: 12 }}
+						lg={{ span: 8 }}
+						key={"col-key-" + index}
+					>
+						<Post key={index} post={post}></Post>
+					</Col>
 				))}
-			</div>
+			</Row>
 		</Layout>
 	);
 };

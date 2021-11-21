@@ -5,6 +5,7 @@ import Link from "next/link";
 import path from "path";
 import CategoryLable from "../../components/CategoryLable";
 import Layout from "../../components/Layout";
+import styles from "../../styles/BlogSlug.module.css"
 
 const PostPage: NextPage = ({
 	frontmatter: { title, category, date, cover_image, author, author_image },
@@ -19,7 +20,7 @@ const PostPage: NextPage = ({
 					<h1 className="text-5xl mb-7">{title}</h1>
 					<CategoryLable>{category}</CategoryLable>
 				</div>
-				<img src={cover_image} alt="" className="w-full rounded" />
+				<img src={cover_image} alt="" className={styles["cover-image"]}/>
 				<div className="flex justify-between items-center bg-gray-100 p-2 my-8">
 					<div className="flex items-center">
 						<img
@@ -29,10 +30,9 @@ const PostPage: NextPage = ({
 						/>
 						<h4>{author}</h4>
 					</div>
-					<div className="mr-4">
-						{date}
-					</div>
+					<div className="mr-4">{date}</div>
 				</div>
+				<div className="blog-text mt-2">{content}</div>
 			</div>
 		</Layout>
 	);
