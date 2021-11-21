@@ -1,7 +1,9 @@
 import fs from "fs";
+import matter from "gray-matter";
+import { NextPage } from "next";
 import path from "path";
 
-const PostPage = () => {
+const PostPage: NextPage = ({ frontmatter, content, slug }: any) => {
 	return <div></div>;
 };
 
@@ -17,5 +19,20 @@ export async function getStaticPaths() {
 	return {
 		paths,
 		fallback: false,
+	};
+}
+
+export async function getStaticProps({
+	params: { slug },
+}: {
+	params: { slug: any };
+}) {
+	const markdownWithMeta = fs.readFileSync(
+		path.join("posts", slug + ".md"),
+		"utf-8"
+	);
+	const { data: frontmatter, content } = matter(markdownWithMeta);
+	return {
+		props: { frontmatter, content, slug },
 	};
 }
