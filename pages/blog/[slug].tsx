@@ -3,7 +3,11 @@ import matter from "gray-matter";
 import { NextPage } from "next";
 import path from "path";
 
-const PostPage: NextPage = ({ frontmatter, content, slug }: any) => {
+const PostPage: NextPage = ({
+	frontmatter: { title, category, date, cover_image, author, author_image },
+	content,
+	slug,
+}: any) => {
 	return <div></div>;
 };
 
