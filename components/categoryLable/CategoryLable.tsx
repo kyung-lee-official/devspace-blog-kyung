@@ -1,22 +1,21 @@
+import { Tag } from "antd";
 import Link from "next/link";
 
 const CategoryLable = ({ children }: { children: any }) => {
 	const colorKey = {
-		JavaScript: "yellow",
+		JavaScript: "gold",
 		CSS: "blue",
 		Python: "green",
 		PHP: "purple",
-		Ruby: "Red",
+		Ruby: "red",
 	} as any;
 
 	return (
-		<div
-			className={`px-2 py-1 bg-${colorKey[children]}-600 text-gray-100 font-bold rounded`}
-		>
+		<Tag color={colorKey[children]}>
 			<Link href={`/blog/category/${children.toLowerCase()}`}>
 				{children}
 			</Link>
-		</div>
+		</Tag>
 	);
 };
 

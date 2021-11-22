@@ -1,9 +1,12 @@
+import { Typography, Avatar, Col, Row } from "antd";
+import Title from "antd/lib/typography/Title";
 import Image from "next/image";
 import Link from "next/link";
-import CategoryLable from "../CategoryLable";
-import styles from "./Post.module.css"
+import CategoryLable from "../categoryLable/CategoryLable";
+import styles from "./Post.module.css";
 
 const Post = ({ post }: { post: any }) => {
+	const { Text } = Typography;
 	return (
 		<div className={styles["post-card"]}>
 			<Image
@@ -13,37 +16,35 @@ const Post = ({ post }: { post: any }) => {
 				width={600}
 				className={styles.image}
 			/>
-			<div className="flex justify-between items-center">
-				<span className="font-light text-gray-600">
+			<Row justify="space-between">
+				<span>
 					{post.frontmatter.date}
 				</span>
 				<CategoryLable>{post.frontmatter.category}</CategoryLable>
-			</div>
-			<div className="mt-2">
+			</Row>
+			<Title level={2}>
 				<Link href={`/blog/${post.slug}`}>
-					<a className="text-2xl text-gray-700 font-bold hover:underline">
-						{post.frontmatter.title}
-					</a>
+					{post.frontmatter.title}
 				</Link>
-				<p className="mt-2 text-gray-600">{post.frontmatter.excerpt}</p>
+			</Title>
+			<div>
+				<p>{post.frontmatter.excerpt}</p>
 			</div>
-			<div className="flex justify-between items-center mt-6">
-				<Link href={`/blog/${post.slug}`}>
-					<a className="text-gray-900 hover:text-blue-600">
-						Read More
-					</a>
-				</Link>
-				<div className="flex items-center">
-					<img
-						src={post.frontmatter.author_image}
-						alt=""
-						className="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block"
-					/>
-					<h3 className="text-gray-700 font-bold">
-						{post.frontmatter.author}
-					</h3>
-				</div>
-			</div>
+			<Row justify="space-between">
+				<Col>
+					<Link href={`/blog/${post.slug}`}>
+						<a>
+							Read More
+						</a>
+					</Link>
+				</Col>
+				<Col>
+					<Row gutter={16} align="middle">
+						<Avatar size={64} src={post.frontmatter.author_image}></Avatar>
+						<Text strong className={styles["author"]}>{post.frontmatter.author}</Text>
+					</Row>
+				</Col>
+			</Row>
 		</div>
 	);
 };

@@ -1,4 +1,10 @@
 /* mx-4 w-10 h-10 object-cover rounded-full hidden sm:block */
 .cover-image {
-	width: 100%;
+	width: 90%;
+	margin-bottom: 2em;
+}
+
+.content-container {
+	border-radius: 10px;
+	box-shadow: 0px 5px 8px #d9d9d9;
 }

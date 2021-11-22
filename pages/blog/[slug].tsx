@@ -1,10 +1,11 @@
+import { Avatar, Col, Row } from "antd";
 import fs from "fs";
 import matter from "gray-matter";
 import { NextPage } from "next";
 import Link from "next/link";
 import path from "path";
 import ReactMarkdown from "react-markdown";
-import CategoryLable from "../../components/CategoryLable";
+import CategoryLable from "../../components/categoryLable/CategoryLable";
 import Layout from "../../components/Layout";
 import styles from "../../styles/BlogSlug.module.css";
 
@@ -16,27 +17,28 @@ const PostPage: NextPage = ({
 	return (
 		<Layout title={title}>
 			<Link href="/blog">Go Back</Link>
-			<div className="w-full px-10 py-6 bg-white rounded-lg shadow-md mt-6">
-				<div className="flex justify-between items-center mt-4">
-					<h1 className="text-5xl mb-7">{title}</h1>
+
+			<div className={styles["content-container"]}>
+				<Row justify="space-between" align="middle">
+					<h1>{title}</h1>
 					<CategoryLable>{category}</CategoryLable>
-				</div>
-				<img
-					src={cover_image}
-					alt=""
-					className={styles["cover-image"]}
-				/>
-				<div className="flex justify-between items-center bg-gray-100 p-2 my-8">
-					<div className="flex items-center">
-						<img
-							src={author_image}
-							alt=""
-							className="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block"
-						/>
-						<h4>{author}</h4>
-					</div>
-					<div className="mr-4">{date}</div>
-				</div>
+				</Row>
+				<Row justify="center">
+					<img
+						src={cover_image}
+						alt=""
+						className={styles["cover-image"]}
+					/>
+				</Row>
+				<Row justify="space-between" align="middle">
+					<Col>
+						<Row justify="space-between" align="middle">
+							<Avatar size={64} src={author_image}></Avatar>
+							<h4>{author}</h4>
+						</Row>
+					</Col>
+					<Col>{date}</Col>
+				</Row>
 				<ReactMarkdown>{content}</ReactMarkdown>
 			</div>
 		</Layout>
