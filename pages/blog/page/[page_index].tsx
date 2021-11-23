@@ -7,6 +7,7 @@ import matter from "gray-matter";
 import Post from "../../../components/post/Post";
 import sortByDate from "../../../utils";
 import { Col, Row } from "antd";
+import { POST_PER_PAGE } from "../../../config/config";
 
 const BlogPage: NextPage<any> = ({ posts }: { posts: any }) => {
 	return (
@@ -29,6 +30,23 @@ const BlogPage: NextPage<any> = ({ posts }: { posts: any }) => {
 };
 
 export default BlogPage;
+
+export async function getStaticPaths() {
+	const files = fs.readdirSync(path.join("posts"));
+	const numPages = Math.ceil(files.length / POST_PER_PAGE);
+
+	let paths = [];
+	for (let i = 1; i <= numPages; i++) {
+		paths.push({
+			params: { page_index: i.toString() },
+		});
+	}
+
+	return {
+		paths,
+		fallback: false,
+	};
+}
 
 export async function getStaticProps() {
 	const files = fs.readdirSync(path.join("posts"));
