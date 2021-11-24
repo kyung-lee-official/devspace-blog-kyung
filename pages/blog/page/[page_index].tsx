@@ -6,11 +6,19 @@ import Layout from "../../../components/Layout";
 import matter from "gray-matter";
 import Post from "../../../components/post/Post";
 import sortByDate from "../../../utils";
-import { Col, Row } from "antd";
+import { Col, Pagination, Row } from "antd";
 import { POST_PER_PAGE } from "../../../config/config";
-import Pagination from "../../../components/pagination/Pagination";
+import { useRouter } from "next/dist/client/router";
+import styles from "./PageIndex.module.css";
 
-const BlogPage: NextPage<any> = ({ posts, numPages, currnentPage }: any) => {
+const BlogPage: NextPage<any> = ({
+	posts,
+	numPages,
+	currnentPage,
+	fileLength,
+}: any) => {
+	const router = useRouter();
+
 	return (
 		<Layout>
 			<h1 className="text-5xl border-b-4 p-5 font-bold">Blog</h1>
@@ -26,7 +34,17 @@ const BlogPage: NextPage<any> = ({ posts, numPages, currnentPage }: any) => {
 					</Col>
 				))}
 			</Row>
-			<Pagination currentPage={currnentPage} numPages={numPages} />
+			<Row justify="center" className={styles["row-container"]}>
+				<Pagination
+					defaultCurrent={currnentPage}
+					total={fileLength}
+					pageSize={POST_PER_PAGE}
+					onChange={(pageNumber: any) => {
+						router.push(`/blog/page/${pageNumber}`);
+						return;
+					}}
+				/>
+			</Row>
 		</Layout>
 	);
 };
@@ -51,8 +69,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-	console.log(params.page_index);
-	console.log("params.page_index");
 	const page = parseInt((params && params.page_index) || 1);
 
 	const files = fs.readdirSync(path.join("posts"));
@@ -81,6 +97,8 @@ export async function getStaticProps({ params }: any) {
 			posts: orderedPosts,
 			numPages,
 			currnentPage: page,
+			// For antd
+			fileLength: files.length,
 		},
 	};
 }
