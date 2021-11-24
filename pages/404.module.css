@@ -1,0 +1,7 @@
+.image-row {
+	border-radius: 15px;
+	background-color: hsl(244, 0%, 16%);
+	margin-top: 2em;
+	margin-bottom: 2em;
+	padding: 3px 5px;
+}
