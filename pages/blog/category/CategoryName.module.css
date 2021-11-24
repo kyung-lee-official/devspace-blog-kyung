@@ -1,0 +1,19 @@
+.all-post-button {
+	color: hsl(0, 0%, 90%);
+	background-color: hsl(244, 0%, 16%);
+	width: 100%;
+	height: 60px;
+	border-radius: 6px;
+	margin: 15px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.all-post-button:hover {
+	color: hsl(0, 0%, 100%);
+	background-color: hsl(244, 0%, 25%);
+	transition: 0.3s;
+}

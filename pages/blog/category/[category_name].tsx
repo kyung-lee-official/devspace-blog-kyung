@@ -7,12 +7,12 @@ import matter from "gray-matter";
 import Post from "@/components/post/Post";
 import sortByDate from "@/utils/index";
 import { Col, Row } from "antd";
-import styles from "./index.module.css";
+import styles from "./CategoryName.module.css";
 
-const HomePage: NextPage<any> = ({ posts }: { posts: any }) => {
+const CategoryBlogPage: NextPage<any> = ({ posts }: { posts: any }) => {
 	return (
 		<Layout>
-			<h1 className="text-5xl border-b-4 p-5 font-bold">Latest Posts</h1>
+			<h1>Latest Posts</h1>
 			<Row gutter={[16, 16]}>
 				{posts.map((post: any, index: number) => (
 					<Col
@@ -36,7 +36,7 @@ const HomePage: NextPage<any> = ({ posts }: { posts: any }) => {
 	);
 };
 
-export default HomePage;
+export default CategoryBlogPage;
 
 export async function getStaticProps() {
 	const files = fs.readdirSync(path.join("posts"));
