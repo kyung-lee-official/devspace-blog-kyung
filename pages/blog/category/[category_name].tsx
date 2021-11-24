@@ -49,13 +49,17 @@ export async function getStaticPaths() {
 		return frontmatter.category.toLowerCase();
 	});
 
+	const paths = categories.map((category) => ({
+		params: { category_name: category },
+	}));
+
 	return {
-		paths: [],
+		paths,
 		fallback: false,
 	};
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ params: { category_name } }: any) {
 	const files = fs.readdirSync(path.join("posts"));
 	const posts = files.map((filename) => {
 		const slug = filename.replace(".md", "");
