@@ -5,9 +5,9 @@ import { NextPage } from "next";
 import Link from "next/link";
 import path from "path";
 import ReactMarkdown from "react-markdown";
-import CategoryLable from "../../components/categoryLable/CategoryLable";
-import Layout from "../../components/Layout";
-import styles from "../../styles/BlogSlug.module.css";
+import CategoryLable from "@/components/categoryLable/CategoryLable";
+import Layout from "@/components/layout/Layout";
+import styles from "./styles/BlogSlug.module.css";
 
 const PostPage: NextPage = ({
 	frontmatter: { title, category, date, cover_image, author, author_image },

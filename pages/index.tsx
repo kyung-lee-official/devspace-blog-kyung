@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 import Link from "next/link";
 import type { NextPage } from "next";
-import Layout from "../components/Layout";
+import Layout from "@/components/layout/Layout";
 import matter from "gray-matter";
-import Post from "../components/post/Post";
-import sortByDate from "../utils";
+import Post from "@/components/post/Post";
+import sortByDate from "@/utils/index";
 import { Col, Row } from "antd";
 
 const HomePage: NextPage<any> = ({ posts }: { posts: any }) => {

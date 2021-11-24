@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Header from "./Header";
+import Header from "../header/Header";
 import { Content } from "antd/lib/layout/layout";
 import { Col, Row } from "antd";
 
