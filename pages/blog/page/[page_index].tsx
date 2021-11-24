@@ -8,6 +8,7 @@ import Post from "../../../components/post/Post";
 import sortByDate from "../../../utils";
 import { Col, Row } from "antd";
 import { POST_PER_PAGE } from "../../../config/config";
+import Pagination from "../../../components/pagination/Pagination";
 
 const BlogPage: NextPage<any> = ({ posts, numPages, currnentPage }: any) => {
 	return (
@@ -25,6 +26,7 @@ const BlogPage: NextPage<any> = ({ posts, numPages, currnentPage }: any) => {
 					</Col>
 				))}
 			</Row>
+			<Pagination currentPage={currnentPage} numPages={numPages} />
 		</Layout>
 	);
 };
@@ -52,7 +54,7 @@ export async function getStaticProps({ params }: any) {
 	console.log(params.page_index);
 	console.log("params.page_index");
 	const page = parseInt((params && params.page_index) || 1);
-	
+
 	const files = fs.readdirSync(path.join("posts"));
 	const posts = files.map((filename) => {
 		const slug = filename.replace(".md", "");
