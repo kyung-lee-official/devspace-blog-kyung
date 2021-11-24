@@ -38,6 +38,23 @@ const CategoryBlogPage: NextPage<any> = ({ posts }: { posts: any }) => {
 
 export default CategoryBlogPage;
 
+export async function getStaticPaths() {
+	const files = fs.readdirSync(path.join("posts"));
+	const categories = files.map((filename) => {
+		const markdownWithMeta = fs.readFileSync(
+			path.join("posts", filename),
+			"utf-8"
+		);
+		const { data: frontmatter } = matter(markdownWithMeta);
+		return frontmatter.category.toLowerCase();
+	});
+
+	return {
+		paths: [],
+		fallback: false,
+	};
+}
+
 export async function getStaticProps() {
 	const files = fs.readdirSync(path.join("posts"));
 	const posts = files.map((filename) => {
