@@ -7,7 +7,7 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 import CategoryLable from "@/components/categoryLable/CategoryLable";
 import Layout from "@/components/layout/Layout";
-import styles from "./styles/BlogSlug.module.css";
+import styles from "./BlogSlug.module.css";
 
 const PostPage: NextPage = ({
 	frontmatter: { title, category, date, cover_image, author, author_image },
