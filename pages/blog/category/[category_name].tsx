@@ -9,10 +9,10 @@ import sortByDate from "@/utils/index";
 import { Col, Row } from "antd";
 import styles from "./CategoryName.module.css";
 
-const CategoryBlogPage: NextPage<any> = ({ posts }: { posts: any }) => {
+const CategoryBlogPage: NextPage<any> = ({ posts, categoryName }: any) => {
 	return (
 		<Layout>
-			<h1>Latest Posts</h1>
+			<h1>Post in {categoryName}</h1>
 			<Row gutter={[16, 16]}>
 				{posts.map((post: any, index: number) => (
 					<Col
@@ -24,13 +24,6 @@ const CategoryBlogPage: NextPage<any> = ({ posts }: { posts: any }) => {
 						<Post key={index} post={post}></Post>
 					</Col>
 				))}
-			</Row>
-			<Row justify="center" align="middle">
-				<Link href="/blog">
-					<Col span={22} className={styles["all-post-button"]}>
-						All Posts
-					</Col>
-				</Link>
 			</Row>
 		</Layout>
 	);
@@ -75,9 +68,15 @@ export async function getStaticProps({ params: { category_name } }: any) {
 		};
 	});
 
+	// Filter posts by category
+	const categoryPosts = posts.filter(
+		(post) => post.frontmatter.category.toLowerCase() === category_name
+	);
+
 	return {
 		props: {
-			posts: posts.sort(sortByDate).slice(0, 6),
+			posts: categoryPosts.sort(sortByDate),
+			categoryName: category_name,
 		},
 	};
 }
