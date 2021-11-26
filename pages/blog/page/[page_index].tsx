@@ -8,6 +8,7 @@ import { POST_PER_PAGE } from "@/config/config";
 import { useRouter } from "next/dist/client/router";
 import styles from "./PageIndex.module.css";
 import { getPosts } from "@/lib/posts";
+import CategoryList from "@/components/categoryList/CategoryList";
 
 const BlogPage: NextPage<any> = ({
 	posts,
@@ -21,7 +22,7 @@ const BlogPage: NextPage<any> = ({
 	return (
 		<Layout>
 			<Row>
-				<Col span={18}>
+				<Col span={17}>
 					<h1>Blog</h1>
 					<Row gutter={[16, 16]}>
 						{posts.map((post: any, index: number) => (
@@ -47,7 +48,9 @@ const BlogPage: NextPage<any> = ({
 						/>
 					</Row>
 				</Col>
-				<Col span={6}></Col>
+				<Col span={6} offset={1}>
+					<CategoryList categories={categories}/>
+				</Col>
 			</Row>
 		</Layout>
 	);
