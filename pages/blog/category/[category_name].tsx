@@ -6,22 +6,34 @@ import matter from "gray-matter";
 import Post from "@/components/post/Post";
 import { Col, Row } from "antd";
 import { getPosts } from "@/lib/posts";
+import CategoryList from "@/components/categoryList/CategoryList";
 
-const CategoryBlogPage: NextPage<any> = ({ posts, categoryName }: any) => {
+const CategoryBlogPage: NextPage<any> = ({
+	posts,
+	categoryName,
+	categories,
+}: any) => {
 	return (
 		<Layout>
-			<h1>Post in {categoryName}</h1>
-			<Row gutter={[16, 16]}>
-				{posts.map((post: any, index: number) => (
-					<Col
-						sm={{ span: 24 }}
-						md={{ span: 12 }}
-						lg={{ span: 8 }}
-						key={"col-key-" + index}
-					>
-						<Post key={index} post={post}></Post>
-					</Col>
-				))}
+			<Row>
+				<Col span={17}>
+					<h1>Post in {categoryName}</h1>
+					<Row gutter={[16, 16]}>
+						{posts.map((post: any, index: number) => (
+							<Col
+								sm={{ span: 24 }}
+								md={{ span: 12 }}
+								lg={{ span: 8 }}
+								key={"col-key-" + index}
+							>
+								<Post key={index} post={post}></Post>
+							</Col>
+						))}
+					</Row>
+				</Col>
+				<Col span={6} offset={1}>
+					<CategoryList categories={categories}/>
+				</Col>
 			</Row>
 		</Layout>
 	);
@@ -53,6 +65,10 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params: { category_name } }: any) {
 	const posts = getPosts();
 
+	// Get categories for sidebar
+	const categories = posts.map((post) => post.frontmatter.category);
+	const uniqueCategories = [...new Set(categories)];
+
 	// Filter posts by category
 	const categoryPosts = posts.filter(
 		(post) => post.frontmatter.category.toLowerCase() === category_name
@@ -62,6 +78,7 @@ export async function getStaticProps({ params: { category_name } }: any) {
 		props: {
 			posts: categoryPosts,
 			categoryName: category_name,
+			categories: uniqueCategories,
 		},
 	};
 }
