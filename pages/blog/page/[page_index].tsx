@@ -72,6 +72,10 @@ export async function getStaticProps({ params }: any) {
 	const files = fs.readdirSync(path.join("posts"));
 	const posts = getPosts();
 
+	// Get categories for sidebar
+	const categories = posts.map((post) => post.frontmatter.category);
+	const uniqueCategories = [...new Set(categories)];
+
 	const numPages = Math.ceil(files.length / POST_PER_PAGE);
 	const pageIndex = page - 1;
 	const orderedPosts = posts.slice(
