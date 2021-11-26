@@ -7,6 +7,11 @@
 	margin-top: 6px;
 }
 
+.title-link {
+	color: #434343;
+	cursor: pointer;
+}
+
 .author {
 	padding: 8px;
 }

@@ -17,14 +17,14 @@ const Post = ({ post }: { post: any }) => {
 				className={styles.image}
 			/>
 			<Row justify="space-between">
-				<span>
-					{post.frontmatter.date}
-				</span>
+				<span>{post.frontmatter.date}</span>
 				<CategoryLable>{post.frontmatter.category}</CategoryLable>
 			</Row>
 			<Title level={2}>
 				<Link href={`/blog/${post.slug}`}>
-					{post.frontmatter.title}
+					<div className={styles["title-link"]}>
+						{post.frontmatter.title}
+					</div>
 				</Link>
 			</Title>
 			<div>
@@ -33,15 +33,18 @@ const Post = ({ post }: { post: any }) => {
 			<Row justify="space-between">
 				<Col>
 					<Link href={`/blog/${post.slug}`}>
-						<a>
-							Read More
-						</a>
+						<a>Read More</a>
 					</Link>
 				</Col>
 				<Col>
 					<Row gutter={16} align="middle">
-						<Avatar size={64} src={post.frontmatter.author_image}></Avatar>
-						<Text strong className={styles["author"]}>{post.frontmatter.author}</Text>
+						<Avatar
+							size={64}
+							src={post.frontmatter.author_image}
+						></Avatar>
+						<Text strong className={styles["author"]}>
+							{post.frontmatter.author}
+						</Text>
 					</Row>
 				</Col>
 			</Row>
