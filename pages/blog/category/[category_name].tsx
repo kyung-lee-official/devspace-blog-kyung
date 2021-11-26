@@ -51,7 +51,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { category_name } }: any) {
-	const files = fs.readdirSync(path.join("posts"));
 	const posts = getPosts();
 
 	// Filter posts by category
