@@ -1,15 +1,13 @@
 import fs from "fs";
 import path from "path";
-import Link from "next/link";
 import type { NextPage } from "next";
 import Layout from "@/components/layout/Layout";
-import matter from "gray-matter";
 import Post from "@/components/post/Post";
-import sortByDate from "@/utils/index";
 import { Col, Pagination, Row } from "antd";
 import { POST_PER_PAGE } from "@/config/config";
 import { useRouter } from "next/dist/client/router";
 import styles from "./PageIndex.module.css";
+import { getPosts } from "@/lib/posts";
 
 const BlogPage: NextPage<any> = ({
 	posts,
@@ -72,25 +70,14 @@ export async function getStaticProps({ params }: any) {
 	const page = parseInt((params && params.page_index) || 1);
 
 	const files = fs.readdirSync(path.join("posts"));
-	const posts = files.map((filename) => {
-		const slug = filename.replace(".md", "");
-		const markdownWithMeta = fs.readFileSync(
-			path.join("posts", filename),
-			"utf-8"
-		);
-		const { data: frontmatter } = matter(markdownWithMeta);
-
-		return {
-			slug,
-			frontmatter,
-		};
-	});
+	const posts = getPosts();
 
 	const numPages = Math.ceil(files.length / POST_PER_PAGE);
 	const pageIndex = page - 1;
-	const orderedPosts = posts
-		.sort(sortByDate)
-		.slice(pageIndex * POST_PER_PAGE, (pageIndex + 1) * POST_PER_PAGE);
+	const orderedPosts = posts.slice(
+		pageIndex * POST_PER_PAGE,
+		(pageIndex + 1) * POST_PER_PAGE
+	);
 
 	return {
 		props: {
