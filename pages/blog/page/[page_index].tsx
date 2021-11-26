@@ -13,35 +13,41 @@ const BlogPage: NextPage<any> = ({
 	posts,
 	numPages,
 	currnentPage,
+	categories,
 	fileLength,
 }: any) => {
 	const router = useRouter();
 
 	return (
 		<Layout>
-			<h1>Blog</h1>
-			<Row gutter={[16, 16]}>
-				{posts.map((post: any, index: number) => (
-					<Col
-						sm={{ span: 24 }}
-						md={{ span: 12 }}
-						lg={{ span: 8 }}
-						key={"col-key-" + index}
-					>
-						<Post key={index} post={post}></Post>
-					</Col>
-				))}
-			</Row>
-			<Row justify="center" className={styles["row-container"]}>
-				<Pagination
-					defaultCurrent={currnentPage}
-					total={fileLength}
-					pageSize={POST_PER_PAGE}
-					onChange={(pageNumber: any) => {
-						router.push(`/blog/page/${pageNumber}`);
-						return;
-					}}
-				/>
+			<Row>
+				<Col span={18}>
+					<h1>Blog</h1>
+					<Row gutter={[16, 16]}>
+						{posts.map((post: any, index: number) => (
+							<Col
+								sm={{ span: 24 }}
+								md={{ span: 12 }}
+								lg={{ span: 8 }}
+								key={"col-key-" + index}
+							>
+								<Post key={index} post={post}></Post>
+							</Col>
+						))}
+					</Row>
+					<Row justify="center" className={styles["row-container"]}>
+						<Pagination
+							defaultCurrent={currnentPage}
+							total={fileLength}
+							pageSize={POST_PER_PAGE}
+							onChange={(pageNumber: any) => {
+								router.push(`/blog/page/${pageNumber}`);
+								return;
+							}}
+						/>
+					</Row>
+				</Col>
+				<Col span={6}></Col>
 			</Row>
 		</Layout>
 	);
@@ -88,6 +94,7 @@ export async function getStaticProps({ params }: any) {
 			posts: orderedPosts,
 			numPages,
 			currnentPage: page,
+			categories: uniqueCategories,
 			// For antd
 			fileLength: files.length,
 		},
