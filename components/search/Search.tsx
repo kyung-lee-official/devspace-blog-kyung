@@ -5,9 +5,20 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const Search = () => {
 	const [searchTerm, setSearchTerm] = useState("");
-	const [searchResults, setSearchResults] = useState("");
+	const [searchResults, setSearchResults] = useState([]);
 
-	const onSearch = () => {};
+	useEffect(() => {
+		const getResults = async () => {
+			if (searchTerm === "") {
+				setSearchResults([]);
+			} else {
+				const res = await fetch(`/api/search?q=${searchTerm}`);
+				const { results } = await res.json();
+				setSearchResults(results);
+			}
+		};
+		getResults();
+	}, [searchTerm]);
 
 	return (
 		<Row className={styles["search-container"]}>
@@ -25,7 +36,7 @@ const Search = () => {
 								placeholder="Search Posts..."
 								className={styles["search-input"]}
 							/>
-							<SearchOutlined className={styles["search-icon"]}/>
+							<SearchOutlined className={styles["search-icon"]} />
 						</form>
 					</Col>
 				</Row>
