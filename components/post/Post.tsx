@@ -1,6 +1,5 @@
 import { Typography, Avatar, Col, Row } from "antd";
 import Title from "antd/lib/typography/Title";
-import Image from "next/image";
 import Link from "next/link";
 import CategoryLable from "../categoryLable/CategoryLable";
 import styles from "./Post.module.css";
@@ -9,11 +8,10 @@ const Post = ({ post }: { post: any }) => {
 	const { Text } = Typography;
 	return (
 		<div className={styles["post-card"]}>
-			<Image
+			<img
 				src={post.frontmatter.cover_image}
 				alt=""
-				height={420}
-				width={600}
+				width={"100%"}
 				className={styles.image}
 			/>
 			<Row justify="space-between">

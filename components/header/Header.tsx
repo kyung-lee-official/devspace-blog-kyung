@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import styles from "./Header.module.css";
 import { Row, Col, Grid } from "antd";
 
@@ -14,7 +13,7 @@ const Header = () => {
 					<Col offset={1} flex="auto">
 						<Link href="/">
 							<a className={styles["logo-image-link"]}>
-								<Image
+								<img
 									src="/images/logo.png"
 									width={40}
 									height={40}
@@ -43,7 +42,7 @@ const Header = () => {
 						<Col className={styles["logo-container"]}>
 							<Link href="/">
 								<a className={styles["logo-image-link"]}>
-									<Image
+									<img
 										src="/images/logo.png"
 										width={40}
 										height={40}

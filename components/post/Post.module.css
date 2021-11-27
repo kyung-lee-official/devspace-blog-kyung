@@ -7,6 +7,11 @@
 	margin-top: 6px;
 }
 
+.image {
+	margin-bottom: 1em;
+	border-radius: 5px;
+}
+
 .title-link {
 	color: #434343;
 	cursor: pointer;
