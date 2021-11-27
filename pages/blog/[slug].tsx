@@ -16,31 +16,32 @@ const PostPage: NextPage = ({
 }: any) => {
 	return (
 		<Layout title={title}>
-			<Link href="/blog">Go Back</Link>
-
-			<div className={styles["content-container"]}>
-				<Row justify="space-between" align="middle">
-					<h1>{title}</h1>
-					<CategoryLable>{category}</CategoryLable>
-				</Row>
-				<Row justify="center">
-					<img
-						src={cover_image}
-						alt=""
-						className={styles["cover-image"]}
-					/>
-				</Row>
-				<Row justify="space-between" align="middle">
-					<Col>
-						<Row justify="space-between" align="middle">
-							<Avatar size={64} src={author_image}></Avatar>
-							<h4>{author}</h4>
-						</Row>
-					</Col>
-					<Col>{date}</Col>
-				</Row>
-				<ReactMarkdown>{content}</ReactMarkdown>
-			</div>
+			<Row justify="center" className={styles["content-container"]}>
+				<Col span={22}>
+					<Link href="/blog">Go Back</Link>
+					<Row justify="space-between" align="middle">
+						<h1>{title}</h1>
+						<CategoryLable>{category}</CategoryLable>
+					</Row>
+					<Row justify="center">
+						<img
+							src={cover_image}
+							alt=""
+							className={styles["cover-image"]}
+						/>
+					</Row>
+					<Row justify="space-between" align="middle">
+						<Col>
+							<Row justify="space-between" align="middle">
+								<Avatar size={64} src={author_image}></Avatar>
+								<h4>{author}</h4>
+							</Row>
+						</Col>
+						<Col>{date}</Col>
+					</Row>
+					<ReactMarkdown>{content}</ReactMarkdown>
+				</Col>
+			</Row>
 		</Layout>
 	);
 };
