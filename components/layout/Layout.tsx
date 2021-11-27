@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "../header/Header";
 import { Content } from "antd/lib/layout/layout";
 import { Col, Row } from "antd";
+import Search from "../search/Search";
 
 const Layout = ({
 	title,
@@ -23,11 +24,10 @@ const Layout = ({
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<Header />
+			<Search />
 			<Content>
-				<Row>
-					<Col span={22} offset={1}>
-						{children}
-					</Col>
+				<Row justify="center">
+					<Col span={22}>{children}</Col>
 				</Row>
 			</Content>
 		</div>

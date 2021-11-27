@@ -1,0 +1,22 @@
+.search-container {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-color: #595959;
+}
+
+.search-input {
+	padding-left: 13px;
+	height: 30px;
+	width: 250px;
+	border-radius: 20px;
+	border: 0px solid;
+}
+.search-input:focus {
+	outline: none;
+}
+
+.search-icon {
+	position: absolute;
+	top: 8px;
+	right: 15px;
+}
