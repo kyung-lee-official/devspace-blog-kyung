@@ -4,7 +4,7 @@ import Link from "next/link";
 import CategoryLable from "../categoryLable/CategoryLable";
 import styles from "./Post.module.css";
 
-const Post = ({ post, compact }: { post: any; compact: boolean }) => {
+const Post = ({ post, compact }: { post: any; compact?: boolean }) => {
 	const { Text } = Typography;
 	return (
 		<div className={styles["post-card"]}>
