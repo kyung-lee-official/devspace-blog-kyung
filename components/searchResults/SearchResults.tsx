@@ -9,7 +9,7 @@ const SearchResults = ({ results }: any) => {
 		<div className={styles["result-container"]}>
 			<h3 className={styles["h3"]}>{results.length} Results</h3>
 			{results.map((result: any, index: number) => (
-				<Post key={index} post={result} />
+				<Post key={index} post={result} compact={true} />
 			))}
 		</div>
 	);
