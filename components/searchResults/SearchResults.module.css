@@ -1,0 +1,16 @@
+.result-container {
+	position: absolute;
+	background-color: #f0f0f0;
+	border: #8c8c8c solid 3px;
+	border-radius: 10px;
+	top: 2em;
+	right: 0;
+	width: 350px;
+	padding: 1em;
+	z-index: 1;
+}
+
+.h3 {
+	margin-top: 1em;
+	margin-left: 1em;
+}
